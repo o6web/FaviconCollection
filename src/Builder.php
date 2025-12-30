@@ -66,9 +66,10 @@ class Builder
 	 * @param string $backgroundColorHex
 	 * @param int $gutter
 	 * @param array $sizes
+	 * @param bool $includeIco
 	 * @return $this
 	 */
-	public function build(string $sourceFilePath, string $backgroundColorHex = 'fff', int $gutter = 0, array $sizes = []): self
+	public function build(string $sourceFilePath, string $backgroundColorHex = 'fff', int $gutter = 0, array $sizes = [], bool $includeIco = false): self
 	{
 		$sizes = $this->sanitizeSizes($sizes);
 		$backgroundColorHex = $this->sanitizeBackgroundColor($backgroundColorHex);
@@ -90,7 +91,7 @@ class Builder
 			}
 		}
 
-		if ($this->icoConverter) {
+		if (($this->icoConverter) && ($includeIco)) {
 			$icoOutput = $this->buildIcoFile($sourceFilePath);
 			if ($icoOutput) {
 				$this->outputFiles[] = $icoOutput;

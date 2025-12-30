@@ -160,6 +160,11 @@ class Builder
 	 */
 	private function sanitizeSizes(array $sizes): array
 	{
+		if (count($sizes) === 0) {
+			// WE EXPLICITLY SPECIFIED NO OUTPUT SIZES
+			return [];
+		}
+
 		$sanitizedSizes = array_map(static function ($size) {
 			return (int)$size;
 		}, $sizes);

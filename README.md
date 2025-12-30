@@ -5,7 +5,14 @@
 ## Usage
 
 ```php
+use o6web\FaviconCollection\Builder;
 
+$builder = new Builder(new IcoConverter());
+
+$builder->build($sourceFilePath, $backgroundColorHex, $gutterSpace, $arrayOfValidSizes, $shouldGenerateFaviconIco);
+if ($builder->hasOutputFiles()) {
+	$builder->zipOutputFiles($outputFilePath); // archive the output files to the specified zip
+}
 ```
 
 ## Installation

@@ -52,6 +52,9 @@ class Builder
 		];
 
 		$this->tmpPath = sys_get_temp_dir();
+		if (substr($this->tmpPath, -1) !== DIRECTORY_SEPARATOR) {
+			$this->tmpPath .= DIRECTORY_SEPARATOR;
+		}
 	}
 
 	public function __destruct()

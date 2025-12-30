@@ -133,6 +133,16 @@ class Builder
 	}
 
 	/**
+	 * Determine if any output files have been generated
+	 *
+	 * @return bool
+	 */
+	public function hasOutputFiles(): bool
+	{
+		return (count($this->outputFiles) > 0);
+	}
+
+	/**
 	 * Return the list of generated output files
 	 *
 	 * @return array

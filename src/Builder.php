@@ -3,7 +3,7 @@
 namespace o6web\FaviconCollection;
 
 use cjrasmussen\Color\General;
-use cjrasmussen\Image\Resize;
+use cjrasmussen\Image\Image;
 use Ossobuffo\PhpIco\IcoConverter;
 use ZipArchive;
 
@@ -83,14 +83,12 @@ class Builder
 			if (in_array($size, $sizes, true)) {
 				$outputPath = $this->tmpPath . $imageDefinition->getOutputFilenamePrefix() . '-' . str_pad($size, 3, '0', STR_PAD_LEFT) . '.png';
 
-				$img = Resize::resize($sourceFilePath, $size, $size, 'png', (($imageDefinition->hasTransparentBackground()) ? null : $backgroundColorHex),
-					$imageDefinition->hasRoundEdges(), $gutter);
+				$img = new Image($sourceFilePath);
+				$img->resize($size, $size, (($imageDefinition->hasTransparentBackground()) ? null : $backgroundColorHex), $imageDefinition->hasRoundEdges(), $gutter);
 
-				if (imagepng($img, $outputPath)) {
+				if ($img->saveFile($outputPath)) {
 					$this->outputFiles[] = $outputPath;
 				}
-
-				imagedestroy($img);
 			}
 		}
 
@@ -216,9 +214,9 @@ class Builder
 		[$width, $height] = getimagesize($sourceFilePath);
 		$size = ($width > $height) ? $width : $height;
 
-		$img = Resize::resize($sourceFilePath, $size, $size, 'png');
-		imagepng($img, $temporaryFilePath);
-		imagedestroy($img);
+		$img = new Image($sourceFilePath);
+		$img->resize($size, $size);
+		$img->saveFile($temporaryFilePath);
 
 		$outputPath =  $this->tmpPath . 'favicon.ico';
 

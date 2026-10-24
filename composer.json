@@ -1,7 +1,7 @@
 {
   "name": "o6web/favicon-collection",
   "description": "Package for building a collection of favicons from a base image",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://www.o6web.net",
   "authors": [
     {
@@ -18,7 +18,7 @@
     "php": ">=7.4.0",
     "ext-zip": "*",
     "cjrasmussen/color": "^2.0.0",
-    "cjrasmussen/image": "^2.2.0",
+    "cjrasmussen/image": "^2.3.0",
     "shopblocks/php-ico": "^1.1.0"
   },
   "require-dev": {

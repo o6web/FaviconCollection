@@ -67,12 +67,12 @@ class Builder
 	 *
 	 * @param string $sourceFilePath
 	 * @param string $backgroundColorHex
-	 * @param int $gutter
+	 * @param int|string $gutter
 	 * @param array $sizes
 	 * @param bool $includeIco
 	 * @return $this
 	 */
-	public function build(string $sourceFilePath, string $backgroundColorHex = 'fff', int $gutter = 0, array $sizes = [], bool $includeIco = false): self
+	public function build(string $sourceFilePath, string $backgroundColorHex = 'fff', $gutter = 0, array $sizes = [], bool $includeIco = false): self
 	{
 		$sizes = $this->sanitizeSizes($sizes);
 		$backgroundColorHex = $this->sanitizeBackgroundColor($backgroundColorHex);
